@@ -8,23 +8,25 @@ module.exports = router;
 router.get('/', async (req, res, next) => {
   const data = await Page.findAll()
   console.log(data);
-  res.send(wikiPage())
+  res.send('wikipage')
 })
 
 router.post('/', async (req, res, next) => {
   try {
     const title = req.body.title;
-    const slug = req.body.slug;
+    const slug = title;
     const content = req.body.content;
     const status = req.body.status;
+
     console.log("TCL: req.body", req.body)
+
     const newPage = await Page.create({
       title,
       slug,
       content,
       status
     })
-    res.sendStatus(204).redirect('/')
+    res.redirect('/')
   } catch (error) {
     next(error)
   }

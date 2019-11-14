@@ -1,0 +1,66 @@
+CREATE SERVER checkpoint-express-sequelize;
+CREATE SERVER 'checkpoint-express-sequelize';
+\q
+\l
+DROP SERVER academy;
+CREATE SERVER checkpoint-express-sequelize;
+CREATE DATABASE checkpoint-express-sequelize;
+\q
+CREATE DATABASE checkpoint-express-sequelize;
+\l
+\q
+CREATE DATABASE checkpoint-express-sequelize;
+\q
+\q
+CREATE DATABASE checkpoint-express-sequelize;
+CREATE DATABSE 'checkpoint-express-sequelize';
+CREATE DATABASE 'checkpoint-express-sequelize';
+CREATE DATABASE "checkpoint-express-sequelize";
+\l
+DROP DATABASE academy;
+\l
+\q
+CREATE DATABASE wnews
+;
+\c wnews
+\d
+CREATE TABLE users (
+id SERIAL PRIMARY KEY,
+name TEXT DEFAULT NULL
+);
+CREATE TABLE posts (
+id SERIAL PRIMARY KEY,
+userId INTEGER REFERENCES users(id) NOT NULL,
+title varchar(255) DEFAULT NULL,
+content TEXT DEFAULT NULL,
+date timestamp DEFAULT now()
+);
+\d
+\i path/to/your/seed.sql
+\i /Users/emily/Fullstack/Junior-Phase/PairExercise.Wizard-news-pt3/seed.sql
+;
+SELECT * FROM users;
+CREATE TABLE upvotes (
+userId INTEGER REFERENCES users(id) NOT NULL,
+postId INTEGER REFERENCES posts(id) NOT NULL,
+date timestamp DEFAULT now()
+);
+\i /Users/emily/Fullstack/Junior-Phase/PairExercise.Wizard-news-pt3/upvotes_seed.sql
+;
+\d upvotes
+select * from upvotes
+;
+\q
+\c wnews
+\d
+\d users
+\d posts
+\d users
+SELECT * FROM users
+;
+\q
+\c wikistack
+\d
+\d 
+\q
+\s wikistack
