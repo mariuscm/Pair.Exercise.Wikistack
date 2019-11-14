@@ -17,8 +17,12 @@ router.post('/', async (req, res, next) => {
     const slug = title;
     const content = req.body.content;
     const status = req.body.status;
-
+    const author = await User.findOrCreate({ where: {
+      name: req.body.name,
+      email: req.body.email
+    }})
     console.log("TCL: req.body", req.body)
+    // console.log("TCL: req.body", req.body)
 
     const newPage = await Page.create({
       title,
@@ -26,6 +30,7 @@ router.post('/', async (req, res, next) => {
       content,
       status
     })
+    // console.log(Object.keys(newPage.__proto__));
     res.redirect(`/wiki/${newPage.slug}`);
   } catch (error) {
     next(error)
@@ -41,8 +46,11 @@ router.get('/:slug', async (req, res, next) => {
     const page = await Page.findOne({
       where: {slug: req.params.slug}
     })
+    const author = await page.setAuthor()
+    console.log("TCL: author", author)
+
     console.log(req.body)
-    res.send(wikiPage(page, req.body.name))
+    res.send(wikiPage(page, author.name))
   } catch(error) {
     next(error)
   }

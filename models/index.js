@@ -34,11 +34,15 @@ const User = db.define('user', {
     email: {
         type: Sequelize.STRING,
         allowNull: false,
+        defaultValue: 'email@email.com',
         validate: {
             isEmail: true
         }
     },
 });
+
+// User.hasMany(Page)
+Page.belongsTo(User, {as: 'author'})
 
 module.exports = {
     db,
